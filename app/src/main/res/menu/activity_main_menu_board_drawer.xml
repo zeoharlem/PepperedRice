@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_dashboard"
+            android:icon="@drawable/ic_outline_dashboard_24"
+            android:title="Dashboard" />
+        <item
+            android:id="@+id/nav_blog_news"
+            android:icon="@drawable/ic_baseline_restaurant_menu_24"
+            android:title="Food/Menu" />
+        <item
+            android:id="@+id/nav_videos"
+            android:icon="@drawable/ic_outline_food_bank_24"
+            android:title="Food Spots" />
+        <item
+            android:id="@+id/nav_audios"
+            android:icon="@drawable/ic_outline_date_range_24"
+            android:title="Schedules" />
+
+        <item
+            android:id="@+id/nav_bible"
+            android:icon="@drawable/ic_outline_supervisor_account_24"
+            android:title="Account" />
+    </group>
+
+    <item android:title="Find Us">
+        <menu>
+            <item
+                android:id="@+id/nav_facebook"
+                android:icon="@drawable/facebook"
+                android:title="Facebook" />
+            <item
+                android:id="@+id/nav_instagram"
+                android:icon="@drawable/instagram"
+                android:title="Instagram" />
+            <item
+                android:id="@+id/nav_youtube"
+                android:icon="@drawable/youtube"
+                android:title="Youtube" />
+            <item
+                android:id="@+id/nav_whatsapp"
+                android:icon="@drawable/whatsapp"
+                android:title="Whatsapp" />
+        </menu>
+    </item>
+
+</menu>

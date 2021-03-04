@@ -1,0 +1,38 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.zeoharlem.gads.pepperedrice.MainActivity">
+
+    <item
+        android:id="@+id/home"
+        android:title="Home"
+        android:icon="@drawable/ic_outline_dashboard_24"
+        app:showAsAction="always"
+        />
+
+    <item
+        android:id="@+id/drinks"
+        android:title="Menu"
+        android:icon="@drawable/ic_outline_food_bank_black_24"
+        app:showAsAction="always"
+        />
+
+    <item
+        android:id="@+id/shawama"
+        android:title="Schedules"
+        android:icon="@drawable/ic_twotone_calendar_view_day_24"
+        app:showAsAction="always"
+        />
+
+    <item
+        android:id="@+id/shops"
+        android:title="Shops"
+        android:icon="@drawable/shop"
+        app:showAsAction="always"
+        />
+
+<!--    <item-->
+<!--        android:id="@+id/action_settings"-->
+<!--        android:title="@string/action_settings"-->
+<!--        app:showAsAction="ifRoom" />-->
+</menu>

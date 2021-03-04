@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="40dp"
+    android:paddingBottom="20dp"
+    tools:context=".Fragments.HomeFragment">
+
+
+    <View
+        android:id="@+id/viewShell"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/halfcircle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/textDescCarrier"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="20dp"
+        android:paddingTop="20dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/spartanmedium"
+            android:paddingBottom="5dp"
+            android:text="Tasty food at your beckon"
+            android:textColor="@color/white"
+            android:textSize="13sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/spartanblack"
+            android:paddingBottom="10dp"
+            android:text="PepperedRice Meals"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/foodPager2View"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="40dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textDescCarrier" />
+
+    <ProgressBar
+        android:id="@+id/progress_circular_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/foodPager2View"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewShell"
+         />
+
+    <LinearLayout
+        android:id="@+id/actionByUsers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/foodPager2View">
+
+        <TextView
+            android:id="@+id/menuAction"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/spartanblack"
+            android:paddingBottom="10dp"
+            android:text="Menu Actions"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/menuButton"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/circular_button"
+                android:padding="50dp"
+                android:src="@drawable/ic_baseline_restaurant_menu_24"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/callButton"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/menuButtonText"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/spartanregular"
+                android:gravity="center"
+                android:text="All Menu"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/callButton"
+                app:layout_constraintTop_toBottomOf="@id/menuButton" />
+
+            <ImageButton
+                android:id="@+id/callButton"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginEnd="10dp"
+                android:layout_toEndOf="@+id/menuButton"
+                android:layout_weight="1"
+                android:background="@drawable/circular_button"
+                android:padding="50dp"
+                android:src="@drawable/ic_baseline_add_ic_call_red_24"
+                app:layout_constraintLeft_toRightOf="@id/menuButton"
+                app:layout_constraintRight_toLeftOf="@+id/whatsAppButton"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/callButtonText"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="15dp"
+                android:fontFamily="@font/spartanregular"
+                android:text="Call Us"
+                app:layout_constraintLeft_toLeftOf="@id/callButton"
+                app:layout_constraintTop_toBottomOf="@id/callButton" />
+
+
+            <ImageButton
+                android:id="@+id/whatsAppButton"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginEnd="10dp"
+                android:layout_toEndOf="@+id/callButton"
+                android:layout_weight="1"
+                android:background="@drawable/circular_button"
+                android:padding="50dp"
+                android:src="@drawable/ic_outline_person_search_44"
+                app:layout_constraintLeft_toRightOf="@id/callButton"
+                app:layout_constraintRight_toLeftOf="@+id/storesButton"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/whatsAppButtonText"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/spartanregular"
+                android:text="Get Help"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="@id/whatsAppButton"
+                app:layout_constraintTop_toBottomOf="@id/whatsAppButton" />
+
+
+            <ImageButton
+                android:id="@+id/storesButton"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_gravity=""
+                android:layout_marginEnd="10dp"
+                android:layout_toEndOf="@+id/whatsAppButton"
+                android:layout_weight="1"
+                android:background="@drawable/circular_button"
+                android:padding="50dp"
+                android:src="@drawable/ic_baseline_add_business_24"
+                app:layout_constraintLeft_toRightOf="@id/whatsAppButton"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/spartanregular"
+                android:text="Food Spot"
+                app:layout_constraintLeft_toLeftOf="@id/storesButton"
+                app:layout_constraintLeft_toRightOf="@+id/whatsAppButton"
+                app:layout_constraintTop_toBottomOf="@id/storesButton" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/button1"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/circular_button"
+                android:padding="50dp"
+                android:src="@drawable/ic_baseline_notifications_34"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/button2"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/all_menu"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/spartanregular"
+                android:gravity="center"
+                android:text="Notifications"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/button2"
+                app:layout_constraintTop_toBottomOf="@id/button1" />
+
+            <ImageButton
+                android:id="@+id/button2"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginEnd="10dp"
+                android:layout_toEndOf="@+id/button1"
+                android:layout_weight="1"
+                android:background="@drawable/circular_button"
+                android:padding="50dp"
+                android:src="@drawable/ic_baseline_add_alarm_34"
+                app:layout_constraintLeft_toRightOf="@id/button1"
+                app:layout_constraintRight_toLeftOf="@+id/button3"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/schedules"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/spartanregular"
+                android:text="Schedule"
+                app:layout_constraintLeft_toLeftOf="@id/button2"
+                app:layout_constraintLeft_toRightOf="@+id/all_menu"
+                app:layout_constraintTop_toBottomOf="@id/button2" />
+
+
+            <ImageButton
+                android:id="@+id/button3"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/circular_button"
+                android:padding="50dp"
+                android:src="@drawable/whatsapp_light"
+                app:layout_constraintLeft_toRightOf="@id/button2"
+                app:layout_constraintRight_toLeftOf="@+id/button4"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/whatsapp_us"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/spartanregular"
+                android:text="WhatsApp"
+                app:layout_constraintLeft_toLeftOf="@id/button3"
+                app:layout_constraintLeft_toRightOf="@+id/schedules"
+                app:layout_constraintTop_toBottomOf="@id/button3" />
+
+
+            <ImageButton
+                android:id="@+id/button4"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_gravity=""
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/circular_button"
+                android:padding="50dp"
+                android:src="@drawable/ic_outline_supervisor_account_24"
+                app:layout_constraintLeft_toRightOf="@id/button3"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:fontFamily="@font/spartanregular"
+                android:text="Account"
+                app:layout_constraintLeft_toLeftOf="@id/button4"
+                app:layout_constraintLeft_toRightOf="@+id/whatsapp_us"
+                app:layout_constraintTop_toBottomOf="@id/button4" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/dishesVariety"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/actionByUsers">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/spartanblack"
+            android:paddingBottom="10dp"
+            android:text="Popular"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <!--        <androidx.recyclerview.widget.RecyclerView-->
+        <!--            android:id="@+id/varietiesRecyclerView"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content" />-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_transparent_background"
+                android:fontFamily="@font/spartanblack"
+                android:text="Varieties"
+                android:textColor="@color/colorRed"
+                android:textSize="13sp" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/button_transparent_background"
+                android:fontFamily="@font/spartanblack"
+                android:text="Packages"
+                android:textColor="@color/colorRed"
+                android:textSize="13sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

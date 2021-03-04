@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<font-family xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <font
+        android:font="@font/leaguespartanbold"
+        app:font="@font/leaguespartanbold" />
+
+    <font
+        android:font="@font/spartanblack"
+        app:font="@font/spartanblack" />
+
+    <font
+        android:font="@font/spartanregular"
+        app:font="@font/spartanregular" />
+
+    <font
+        android:font="@font/spartanmedium"
+        app:font="@font/spartanmedium" />
+
+    <font
+        android:font="@font/spartansemibold"
+        app:font="@font/spartansemibold" />
+</font-family>

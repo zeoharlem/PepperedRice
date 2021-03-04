@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardViewBlog"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:layout_gravity="center_horizontal"
+    android:layout_margin="5dp"
+    app:cardBackgroundColor="#000"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="5dp">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/popularFoodVarieties"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/food_plate" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/gradient_new_bg">
+
+            <RelativeLayout
+                android:gravity="bottom"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@drawable/gradient_new_bg"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp">
+
+                <TextView
+                    android:id="@+id/textViewTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/spartanmedium"
+                    android:text="Spagetti Chicken"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+
+                <LinearLayout
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textViewTitle"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/spartanblack"
+                        android:text="N200"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+
+                    <!--                    <ImageButton-->
+                    <!--                        android:layout_width="0dp"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:layout_weight=".5"-->
+                    <!--                        android:background="@android:color/transparent"-->
+                    <!--                        android:padding="5dp"-->
+                    <!--                        android:src="@drawable/ic_baseline_favorite_border_24" />-->
+
+
+                </LinearLayout>
+
+            </RelativeLayout>
+        </FrameLayout>
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

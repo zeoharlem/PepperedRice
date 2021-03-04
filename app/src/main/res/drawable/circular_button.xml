@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+<!--    <item>-->
+<!--        <shape android:shape="oval">-->
+<!--            <solid android:color="#eee"/>-->
+<!--        </shape>-->
+<!--    </item>-->
+    <item android:bottom="5dp" android:right="3dp">
+        <shape android:shape="oval">
+            <solid android:color="@color/colorRed"/>
+<!--            <gradient-->
+<!--                android:startColor="#5f69ff"-->
+<!--                android:endColor="#9298fc"-->
+<!--                android:angle="90"-->
+<!--                />-->
+            <stroke android:color="@color/colorRed" android:width="3dp"/>
+        </shape>
+    </item>
+</layer-list>
