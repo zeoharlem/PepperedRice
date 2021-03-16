@@ -5,9 +5,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.zeoharlem.gads.pepperedrice.Fragments.FragmentA;
-import com.zeoharlem.gads.pepperedrice.Fragments.FragmentB;
-import com.zeoharlem.gads.pepperedrice.Fragments.FragmentC;
+import com.zeoharlem.gads.pepperedrice.fragments.FragmentA;
+import com.zeoharlem.gads.pepperedrice.fragments.FragmentB;
+import com.zeoharlem.gads.pepperedrice.fragments.FragmentC;
 
 public class OnboardingViewPager extends FragmentPagerAdapter {
 

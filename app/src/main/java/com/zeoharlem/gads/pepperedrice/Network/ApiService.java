@@ -1,6 +1,6 @@
 package com.zeoharlem.gads.pepperedrice.Network;
 
-import com.zeoharlem.gads.pepperedrice.Models.MenuFoodItem;
+import com.zeoharlem.gads.pepperedrice.models.MenuFoodItem;
 
 import java.util.List;
 

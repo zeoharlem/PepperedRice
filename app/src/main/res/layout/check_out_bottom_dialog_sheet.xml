@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="mMenuFoodListViewModel"
+            type="com.zeoharlem.gads.pepperedrice.viewmodels.MenuFoodListViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bottom_sheet_background">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/checkoutHeader"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@color/black"
+                android:focusableInTouchMode="true"
+
+                android:padding="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/paypal" />
+
+                <TextView
+                    android:id="@+id/paypalTotalAmount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:fontFamily="@font/spartanblack"
+                    android:gravity="right"
+                    android:text="amount"
+                    android:textColor="@color/colorGray300"
+                    android:textSize="20sp" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/checkoutBody"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:focusableInTouchMode="true"
+                android:orientation="vertical"
+                android:padding="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/checkoutHeader">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/fullname"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="20dp"
+                        android:layout_weight="1"
+                        android:drawablePadding="5dp"
+                        android:fontFamily="@font/spartanregular"
+                        android:hint="Fullname"
+                        android:inputType="text"
+                        android:padding="10dp"
+                        android:textColor="@color/colorGray600"
+                        android:textColorHint="#D3D3D3" />
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/emailAddress"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:layout_weight="1"
+                        android:drawablePadding="5dp"
+                        android:fontFamily="@font/spartanregular"
+                        android:hint="Email Address"
+                        android:inputType="textEmailAddress"
+                        android:padding="10dp"
+                        android:textColor="@color/colorGray600"
+                        android:textColorHint="#D3D3D3" />
+
+                </LinearLayout>
+
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/phoneNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="20dp"
+
+                    android:drawablePadding="5dp"
+                    android:fontFamily="@font/spartanregular"
+                    android:hint="Phone Number"
+                    android:inputType="phone"
+                    android:padding="10dp"
+                    android:textColor="@color/colorGray600"
+                    android:textColorHint="#D3D3D3" />
+
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/locationAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:drawablePadding="5dp"
+                    android:fontFamily="@font/spartanregular"
+                    android:hint="Address"
+                    android:inputType="text"
+                    android:padding="10dp"
+                    android:textColor="@color/colorGray600"
+                    android:textColorHint="#D3D3D3" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/card_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:drawablePadding="5dp"
+                    android:fontFamily="@font/spartanblack"
+                    android:hint="Card Number"
+                    android:inputType="number"
+                    android:padding="10dp"
+                    android:textColor="@color/colorGray600"
+                    android:textColorHint="#D3D3D3" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/month"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginBottom="20dp"
+                        android:layout_weight="1"
+                        android:drawablePadding="5dp"
+                        android:fontFamily="@font/spartanregular"
+                        android:hint="Expiry Month"
+                        android:inputType="number"
+                        android:maxLength="2"
+                        android:padding="10dp"
+                        android:textColor="@color/colorGray600"
+                        android:textColorHint="#D3D3D3" />
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/year"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:layout_weight="1"
+                        android:drawablePadding="5dp"
+                        android:fontFamily="@font/spartanregular"
+                        android:hint="Expiry Year"
+                        android:inputType="number"
+                        android:maxLength="2"
+                        android:padding="10dp"
+                        android:textColor="@color/colorGray600"
+                        android:textColorHint="#D3D3D3" />
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/cvc"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:layout_weight="1"
+                        android:drawablePadding="5dp"
+                        android:fontFamily="@font/spartanregular"
+                        android:hint="CVV"
+                        android:inputType="number"
+                        android:maxLength="3"
+                        android:padding="10dp"
+                        android:textColor="@color/colorGray600"
+                        android:textColorHint="#D3D3D3" />
+
+                </LinearLayout>
+
+
+                <Button
+                    android:id="@+id/payButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_transparent_background"
+                    android:fontFamily="@font/spartanblack"
+                    android:text="Make Payment"
+                    android:textColor="@color/colorRed" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+</layout>

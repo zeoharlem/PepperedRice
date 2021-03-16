@@ -1,13 +1,5 @@
 package com.zeoharlem.gads.pepperedrice;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -16,23 +8,34 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
-import com.google.android.gms.common.GooglePlayServicesRepairableException;
-import com.google.android.gms.security.ProviderInstaller;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.databinding.DataBindingUtil;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
-import com.zeoharlem.gads.pepperedrice.Fragments.DrinksFragment;
-import com.zeoharlem.gads.pepperedrice.Fragments.HomeFragment;
-import com.zeoharlem.gads.pepperedrice.Fragments.ShawamaFragment;
-import com.zeoharlem.gads.pepperedrice.Fragments.ShopsFragment;
+import com.zeoharlem.gads.pepperedrice.activities.CartListActivity;
+import com.zeoharlem.gads.pepperedrice.activities.MapsActivity;
+import com.zeoharlem.gads.pepperedrice.databinding.ActivityDashboardBinding;
+import com.zeoharlem.gads.pepperedrice.fragments.DrinksFragment;
+import com.zeoharlem.gads.pepperedrice.fragments.HomeFragment;
+import com.zeoharlem.gads.pepperedrice.fragments.ShawamaFragment;
+import com.zeoharlem.gads.pepperedrice.fragments.ShopsFragment;
+import com.zeoharlem.gads.pepperedrice.models.CartItem;
+import com.zeoharlem.gads.pepperedrice.viewmodels.MenuFoodListViewModel;
 
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
-import javax.net.ssl.SSLContext;
-
-public class DashboardActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, BottomNavigationView.OnNavigationItemSelectedListener {
+public class DashboardActivity extends BaseApp implements NavigationView.OnNavigationItemSelectedListener, BottomNavigationView.OnNavigationItemSelectedListener {
 
     private static final float END_SCALE = 0.7f;
     DrawerLayout mDrawerLayout;
@@ -42,18 +45,23 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
     BottomNavigationView mBottomNavigationView;
     FrameLayout mFrameLayout;
     private Toolbar mToolbar;
+    private MenuFoodListViewModel mViewModel;
+    private int cartQuantity    = 0;
+
+    ActivityDashboardBinding mActivityDashboardBinding;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboard);
+        //setContentView(R.layout.activity_dashboard);
+        mActivityDashboardBinding   = DataBindingUtil.setContentView(this, R.layout.activity_dashboard);
         //contentView = findViewById(R.id.contentViewMove);
-        mToolbar        = findViewById(R.id.toolbar);
-        setSupportActionBar(mToolbar);
+        //mToolbar        = findViewById(R.id.toolbar);
+        setSupportActionBar(mActivityDashboardBinding.toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        mBottomNavigationView   = findViewById(R.id.bottomNavigationView);
-        mFrameLayout            = findViewById(R.id.dashboardFrameLayout);
+        mBottomNavigationView   = mActivityDashboardBinding.bottomNavigationView;
+        mFrameLayout            = mActivityDashboardBinding.dashboardFrameLayout;
 
         mBottomNavigationView.setOnNavigationItemSelectedListener(this);
         mBottomNavigationView.setBackground(null);
@@ -62,24 +70,36 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
 
         setDrawerLayoutTask();
 
+        setViewModelItemRow();
+
+        mActivityDashboardBinding.faButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent   = new Intent(getApplicationContext(), MapsActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
-    private void forceTls(){
-        try {
-            ProviderInstaller.installIfNeeded(getApplicationContext());
-            SSLContext sslContext;
-            sslContext = SSLContext.getInstance("TLSv1.2");
-            sslContext.init(null, null, null);
-            sslContext.createSSLEngine();
-        }
-        catch (GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException | NoSuchAlgorithmException | KeyManagementException e) {
-            e.printStackTrace();
-        }
+    private void setViewModelItemRow(){
+        mViewModel  = new ViewModelProvider(this).get(MenuFoodListViewModel.class);
+        mViewModel.getCartItemList().observe(this, new Observer<List<CartItem>>() {
+            @Override
+            public void onChanged(List<CartItem> cartItems) {
+                int quantity = 0;
+                for (CartItem cartItem: cartItems) {
+                    quantity += cartItem.getQuantity();
+                }
+                cartQuantity = quantity;
+                invalidateOptionsMenu();
+            }
+        });
     }
 
     private void setDrawerLayoutTask(){
-        mDrawerLayout   = findViewById(R.id.drawer_layout);
-        mNavigationView = findViewById(R.id.nav_view);
+        mDrawerLayout   = mActivityDashboardBinding.drawerLayout;
+        mNavigationView = mActivityDashboardBinding.navView;
         mNavigationView.bringToFront();
         mNavigationView.setNavigationItemSelectedListener(this);
         mNavigationView.setCheckedItem(R.id.nav_dashboard);
@@ -87,7 +107,7 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(
                 this,
                 mDrawerLayout,
-                mToolbar,
+                mActivityDashboardBinding.toolbar,
                 R.string.navigation_drawer_open,
                 R.string.navigation_drawer_close
         );
@@ -177,6 +197,28 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.top_menu, menu);
+        MenuItem menuItem   = menu.findItem(R.id.cart_btn);
+        View actionView     = menuItem.getActionView();
+
+        TextView cartBadgeTextView  = actionView.findViewById(R.id.cart_badge_text_view);
+        cartBadgeTextView.setText(String.valueOf(cartQuantity));
+        //cartBadgeTextView.setVisibility(cartQuantity == 0 ? View.GONE : View.VISIBLE);
+
+        actionView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onOptionsItemSelected(menuItem);
+            }
+        });
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.cart_btn) {
+            Intent intent = new Intent(getApplicationContext(), CartListActivity.class);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

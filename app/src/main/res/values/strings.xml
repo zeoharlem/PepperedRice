@@ -14,4 +14,32 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="buffer_info1">Event Print: Controls the print of each order for print status. In the process of printing a single transaction.</string>
+    <string-array name="quantity_string_array">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
+
+    <string-array name="months_string_array">
+        <item>Jan - 01</item>
+        <item>Feb - 02</item>
+        <item>Mar - 03</item>
+        <item>Apr - 04</item>
+        <item>May - 05</item>
+        <item>June - 06</item>
+        <item>July - 07</item>
+        <item>Aug - 08</item>
+        <item>Sept - 09</item>
+        <item>Oct - 10</item>
+        <item>Nov - 11</item>
+        <item>Dec - 12</item>
+    </string-array>
+    <string name="title_activity_maps">Map</string>
 </resources>

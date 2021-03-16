@@ -16,4 +16,6 @@
     <color name="colorWhite">#FFF</color>
     <color name="colorWhiteSmoke">#F5F5F5</color>
     <color name="colorYellow">#ffd600</color>
+    <color name="colorGray300">#cccccc</color>
+    <color name="colorGray600">#546e7a</color>
 </resources>

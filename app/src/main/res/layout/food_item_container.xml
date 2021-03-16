@@ -81,47 +81,35 @@
             </LinearLayout>
 
             <LinearLayout
+                android:layout_marginTop="7dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ratingsCarrier"
                 android:layout_marginBottom="10dp"
                 android:orientation="horizontal">
 
-                <ImageButton
+                <TextView
+                    android:id="@+id/priceTextView"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight=".5"
-                    android:background="@android:color/transparent"
-                    android:padding="5dp"
-                    android:src="@drawable/ic_outline_directions_bike_white_24" />
-
-                <ImageButton
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight=".5"
-                    android:background="@android:color/transparent"
-                    android:padding="5dp"
-                    android:src="@drawable/ic_baseline_add_24" />
-
-                <ImageButton
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight=".5"
-                    android:background="@android:color/transparent"
-                    android:padding="5dp"
-                    android:src="@drawable/ic_baseline_add_ic_call_24" />
-
-                <Button
-                    android:id="@+id/priceButton"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="-5dp"
-                    android:layout_weight="1"
-                    android:drawableStart="@drawable/ic_outline_directions_bike_white_24"
+                    android:layout_gravity="center_vertical"
                     android:fontFamily="@font/spartanblack"
-                    android:text="N"
+                    android:text="1200"
+                    android:layout_weight="1"
                     android:textColor="@color/white"
-                    android:textSize="14sp" />
+                    android:textSize="16sp" />
+
+<!--                <Button-->
+<!--                    android:id="@+id/priceButton"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="-5dp"-->
+<!--                    android:layout_weight=".5"-->
+<!--                    android:drawableStart="@drawable/ic_outline_directions_bike_white_24"-->
+<!--                    android:fontFamily="@font/spartanblack"-->
+<!--                    android:text="Menu +"-->
+<!--                    android:textColor="@color/white"-->
+<!--                    android:textSize="14sp" />-->
             </LinearLayout>
 
         </RelativeLayout>

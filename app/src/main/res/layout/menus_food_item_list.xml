@@ -1,135 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/cardViewBlog"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingTop="5dp"
-    app:cardBackgroundColor="#000">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+        <variable
+            name="menuFoodItem"
+            type="com.zeoharlem.gads.pepperedrice.models.MenuFoodItem" />
+        
+        <variable
+            name="iProductOnClickListener"
+            type="com.zeoharlem.gads.pepperedrice.adapter.ProductListAdapter.ProductOnClickListener" />
+    </data>
 
-    <LinearLayout
+    <RelativeLayout
+        android:background="?attr/selectableItemBackground"
+        android:onClick="@{() -> iProductOnClickListener.onItemClicked(menuFoodItem)}"
+        android:id="@+id/cardViewBlog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:paddingTop="5dp"
+        app:cardBackgroundColor="#000">
 
-        <com.mikhaellopez.circularimageview.CircularImageView
-            android:id="@+id/foodItemImage"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:adjustViewBounds="true"
-            android:scaleType="centerCrop"
-            android:src="@drawable/food_plate" />
 
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:paddingStart="10dp"
-            android:paddingTop="10dp"
-            android:paddingEnd="20dp"
-            android:paddingBottom="20dp">
+            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/textViewTitle"
-                android:layout_width="match_parent"
+            <com.mikhaellopez.circularimageview.CircularImageView
+                android:id="@+id/foodItemImage"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                android:productImage="@{menuFoodItem.imageUrl}"
+                android:src="@drawable/flat_filled" />
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:fontFamily="@font/spartanblack"
-                android:maxLines="1"
-                android:text="Spagetti Chicken Area"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:paddingStart="10dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="20dp">
 
-            <TextView
-                android:id="@+id/foodDescription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/textViewTitle"
-                android:ellipsize="end"
-                android:fontFamily="@font/spartanregular"
-                android:maxLines="1"
-                android:paddingTop="5dp"
-                android:text="Latest Food Mobile App UI Design"
-                android:textSize="13sp" />
+                <TextView
+                    android:id="@+id/textViewTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/spartanblack"
+                    android:maxLines="1"
+                    android:text="@{menuFoodItem.title}"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
 
-            <androidx.appcompat.widget.AppCompatRatingBar
-                android:id="@+id/ratings"
-                style="?android:attr/ratingBarStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/foodDescription"
-                android:isIndicator="true"
-                android:progressTint="@color/colorYellow"
-                android:max="100"
-                android:rating="5" />
+                <TextView
+                    android:id="@+id/foodDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textViewTitle"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/spartanregular"
+                    android:maxLines="1"
+                    android:paddingTop="5dp"
+                    android:text="@{menuFoodItem.descr}"
+                    android:textSize="13sp" />
 
-            <TextView
-                android:id="@+id/ratingsText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/foodDescription"
-                android:layout_gravity="center_vertical"
-                android:layout_toEndOf="@+id/ratings"
-                android:fontFamily="@font/spartanblack"
-                android:text="4.5"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="2dp"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
+                <androidx.appcompat.widget.AppCompatRatingBar
+                    android:id="@+id/ratings"
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/foodDescription"
+                    android:isIndicator="true"
+                    android:progressTint="@color/colorYellow"
+                    android:max="100"
+                    android:rating="5" />
 
-            <androidx.appcompat.widget.AppCompatRatingBar
-                android:id="@+id/singleRate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/foodDescription"
-                android:layout_toStartOf="@+id/isAvailable"
-                style="?android:attr/ratingBarStyleSmall"
-                android:numStars="1"
-                android:max="1"
-                android:rating="0"/>
+                <TextView
+                    android:id="@+id/ratingsText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/foodDescription"
+                    android:layout_gravity="center_vertical"
+                    android:layout_toEndOf="@+id/ratings"
+                    android:fontFamily="@font/spartanblack"
+                    android:text="4.5"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="2dp"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
 
-            <TextView
-                android:layout_alignParentEnd="true"
-                android:id="@+id/isAvailable"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/foodDescription"
-                android:fontFamily="@font/spartanblack"
-                android:text="Available"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="2dp"
-                android:textColor="#ccc"
-                android:textSize="15sp" />
+                <androidx.appcompat.widget.AppCompatRatingBar
+                    android:id="@+id/singleRate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/foodDescription"
+                    android:layout_toStartOf="@+id/isAvailable"
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:numStars="1"
+                    android:max="1"
+                    android:rating="0" />
+
+                <TextView
+                    android:layout_alignParentEnd="true"
+                    android:id="@+id/isAvailable"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/foodDescription"
+                    android:fontFamily="@font/spartanblack"
+                    android:text="@{menuFoodItem.available ? `Available` : `Out of Stock`}"
+                    android:textColor="@{menuFoodItem.available ? @color/colorGray300 : @color/colorRed300}"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="2dp"
+                    android:textSize="15sp" />
 
 
-        </RelativeLayout>
+            </RelativeLayout>
 
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:orientation="vertical"-->
-<!--            android:paddingTop="10dp">-->
+            <!--        <LinearLayout-->
+            <!--            android:layout_width="match_parent"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:orientation="vertical"-->
+            <!--            android:paddingTop="10dp">-->
 
-<!--            <TextView-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:fontFamily="@font/spartanblack"-->
-<!--                android:text="N750"-->
-<!--                android:textSize="13sp" />-->
+            <!--            <TextView-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:fontFamily="@font/spartanblack"-->
+            <!--                android:text="N750"-->
+            <!--                android:textSize="13sp" />-->
 
-<!--            <ImageButton-->
-<!--                android:id="@+id/priceButton"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="0dp"-->
-<!--                android:layout_weight="1"-->
-<!--                android:fontFamily="@font/spartanblack"-->
-<!--                android:src="@drawable/ic_baseline_add_24"-->
-<!--                android:textColor="@color/white"-->
-<!--                android:textSize="12sp" />-->
-<!--        </LinearLayout>-->
+            <!--            <ImageButton-->
+            <!--                android:id="@+id/priceButton"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="0dp"-->
+            <!--                android:layout_weight="1"-->
+            <!--                android:fontFamily="@font/spartanblack"-->
+            <!--                android:src="@drawable/ic_baseline_add_24"-->
+            <!--                android:textColor="@color/white"-->
+            <!--                android:textSize="12sp" />-->
+            <!--        </LinearLayout>-->
 
-    </LinearLayout>
+        </LinearLayout>
 
-</RelativeLayout>
+    </RelativeLayout>
+</layout>
