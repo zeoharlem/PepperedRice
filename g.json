@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "350096192790",
+    "project_id": "lateral-origin-156815",
+    "storage_bucket": "lateral-origin-156815.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:350096192790:android:b999186ba6b9d0a11f8c37",
+        "android_client_info": {
+          "package_name": "com.zeoharlem.gads.pepperedrice"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "350096192790-h8kgvsfgjch03f18s106msarrsbq5tvo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.zeoharlem.gads.pepperedrice",
+            "certificate_hash": "3300fc2067459d636d7edb2ea387ddbae7677080"
+          }
+        },
+        {
+          "client_id": "350096192790-71md3nplipv4rq9ivi7spr0etoou2kgl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4SD4VM7GXG3GKrT1TL-U78fgh_Xuh-2U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "350096192790-71md3nplipv4rq9ivi7spr0etoou2kgl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

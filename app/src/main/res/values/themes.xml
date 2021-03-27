@@ -34,12 +34,24 @@
 
     <style name="Theme.PepperedRice.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="BottomSheetTheme" parent="Theme.Design.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/BottomSheetStyle</item>
+    </style>
+
+    <style name="BottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+
     <style name="CustomBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+<!--    <style name="CustomBottomSheetDialogTheme" parent="Theme.MaterialComponents.Light.BottomSheetDialog">-->
         <item name="bottomSheetStyle">@style/CustomBottomSheetStyle</item>
     </style>
 
+<!--    <style name="CustomBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">-->
     <style name="CustomBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
         <item name="android:background">@android:color/transparent</item>
+        <item name="fontFamily">@font/spartanblack</item>
     </style>
 
 </resources>

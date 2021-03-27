@@ -2,7 +2,10 @@ package com.zeoharlem.gads.pepperedrice.fragments;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageSwitcher;
 import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
@@ -27,7 +31,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.zeoharlem.gads.pepperedrice.activities.MapsActivity;
+import com.zeoharlem.gads.pepperedrice.activities.ActiveMobileOutletsActivity;
 import com.zeoharlem.gads.pepperedrice.activities.MenusActivity;
 import com.zeoharlem.gads.pepperedrice.adapter.FoodItemAdapter;
 import com.zeoharlem.gads.pepperedrice.adapter.PopularVarietiesAdapter;
@@ -58,7 +62,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private RecyclerView recyclerView;
     private GridLayoutManager gridLayoutManager;
 
-    private ImageButton menuButton, storesButton, button1WhatsApp, callButton;
+    private ImageButton menuButton, storesButton, button1WhatsApp, callButton, gmailButton;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -102,12 +106,18 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private void setButtonsAction(View view){
         menuButton  = view.findViewById(R.id.menuButton);
         storesButton= view.findViewById(R.id.storesButton);
+
         menuButton.setOnClickListener(this);
         storesButton.setOnClickListener(this);
+
         button1WhatsApp = view.findViewById(R.id.button3);
         button1WhatsApp.setOnClickListener(this);
+
         callButton      = view.findViewById(R.id.callButton);
         callButton.setOnClickListener(this);
+
+        gmailButton     = view.findViewById(R.id.button4);
+        gmailButton.setOnClickListener(this);
     }
 
     //Set ArrayList Item for FoodItems
@@ -214,16 +224,46 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 navigateIntent(MenusActivity.class);
                 break;
             case R.id.storesButton:
-                navigateIntent(MapsActivity.class);
+                navigateIntent(ActiveMobileOutletsActivity.class);
                 break;
             case R.id.button3:
                 String message  = "Hi Peppered Rice!";
-                openWhatsAppMessageApp("2348038596978", message);
+                if(isPackageExisted("com.whatsapp")) {
+                    openWhatsAppMessageApp("2348038596978", message);
+                }
+                else{
+                    openWhatsBussinessApp("2348038596978", message);
+                }
                 break;
             case R.id.callButton:
                 callPepperedLine("2348038596978");
                 break;
+            case R.id.button4:
+                sendGmailAppMsg();
+                break;
         }
+    }
+
+    private void sendGmailAppMsg(){
+        Intent intent = new Intent(Intent.ACTION_VIEW)
+                .setType("plain/text")
+                .setData(Uri.parse("pepperedrice@gmail.com"))
+                .setClassName("com.google.android.gm", "com.google.android.gm.ComposeActivityGmail")
+                .putExtra(Intent.EXTRA_SUBJECT, "Peppered Rice Notification")
+                .putExtra(Intent.EXTRA_TEXT, "hello. this is a message sent from my demo app :-)");
+        startActivity(intent);
+    }
+
+    //if whatsapp buzz or whatappMsg is intalled
+    private boolean isPackageExisted(String targetPackage){
+        PackageManager pm       = getContext().getPackageManager();
+        try {
+            PackageInfo info    = pm.getPackageInfo(targetPackage,PackageManager.GET_META_DATA);
+        }
+        catch (PackageManager.NameNotFoundException e) {
+            return false;
+        }
+        return true;
     }
 
     private void navigateIntent(Class navigate){
@@ -231,7 +271,25 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         startActivity(intent);
     }
 
+    //WhatsApp Messenger App
     private void openWhatsAppMessageApp(String phone, String message){
+        PackageManager packageManager   = getContext().getPackageManager();
+        Intent i                        = new Intent(Intent.ACTION_VIEW);
+
+        try {
+            String url  = "https://api.whatsapp.com/send?phone="+ phone +"&text=" + URLEncoder.encode(message, "UTF-8");
+            i.setPackage("com.whatsapp");
+            i.setData(Uri.parse(url));
+            if (i.resolveActivity(packageManager) != null) {
+                getContext().startActivity(i);
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    //Buniess WhatsAppBuzzAPp
+    private void openWhatsBussinessApp(String phone, String message){
         PackageManager packageManager   = getContext().getPackageManager();
         Intent i                        = new Intent(Intent.ACTION_VIEW);
 
@@ -263,6 +321,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             startActivity(new Intent(Intent.ACTION_CALL).setData(Uri.parse("tel:" + phone)));
         }
     }
+
+
+    public void changePngImageColor(int icon, int color, ImageSwitcher mImageView){
+        Drawable mIcon= ContextCompat.getDrawable(requireContext(), icon);
+        mIcon.setColorFilter(ContextCompat.getColor(getActivity(), color), PorterDuff.Mode.MULTIPLY);
+        mImageView.setImageDrawable(mIcon);
+    }
+
 
     private interface iMenusVolleyCallback{
         void onSuccess(ArrayList<FoodItem> menuFoodItemArrayList);

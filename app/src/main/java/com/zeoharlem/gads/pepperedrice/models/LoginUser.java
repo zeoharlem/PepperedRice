@@ -1,5 +1,6 @@
 package com.zeoharlem.gads.pepperedrice.models;
 
+import android.text.TextUtils;
 import android.util.Patterns;
 
 public class LoginUser {
@@ -7,6 +8,7 @@ public class LoginUser {
     private String password;
     private String userId;
     private boolean isLoggedIn;
+    private String message;
 
     public LoginUser(){
 
@@ -59,7 +61,19 @@ public class LoginUser {
         this.password = password;
     }
 
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
     public boolean isEmailValid(){
         return Patterns.EMAIL_ADDRESS.matcher(getUsername()).matches();
+    }
+
+    public boolean isEmptyPassword(){
+        return !TextUtils.isEmpty(password);
     }
 }

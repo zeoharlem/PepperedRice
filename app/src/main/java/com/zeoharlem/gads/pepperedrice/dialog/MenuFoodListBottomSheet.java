@@ -35,7 +35,7 @@ public class MenuFoodListBottomSheet extends BottomSheetDialogFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM, WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
-        //setStyle(STYLE_NORMAL, R.style.CustomBottomSheetDialogTheme);
+        setStyle(STYLE_NORMAL, R.style.CustomBottomSheetDialogTheme);
     }
 
     @Nullable

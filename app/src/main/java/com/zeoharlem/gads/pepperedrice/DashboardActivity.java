@@ -1,5 +1,6 @@
 package com.zeoharlem.gads.pepperedrice;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,7 +13,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.databinding.DataBindingUtil;
@@ -23,8 +23,18 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.zeoharlem.gads.pepperedrice.activities.ActiveMobileOutletsActivity;
 import com.zeoharlem.gads.pepperedrice.activities.CartListActivity;
 import com.zeoharlem.gads.pepperedrice.activities.MapsActivity;
+import com.zeoharlem.gads.pepperedrice.activities.MenusActivity;
+import com.zeoharlem.gads.pepperedrice.activities.SetupProfileActivity;
+import com.zeoharlem.gads.pepperedrice.data.SessionManager;
 import com.zeoharlem.gads.pepperedrice.databinding.ActivityDashboardBinding;
 import com.zeoharlem.gads.pepperedrice.fragments.DrinksFragment;
 import com.zeoharlem.gads.pepperedrice.fragments.HomeFragment;
@@ -48,20 +58,27 @@ public class DashboardActivity extends BaseApp implements NavigationView.OnNavig
     private MenuFoodListViewModel mViewModel;
     private int cartQuantity    = 0;
 
+    private FirebaseAuth mFirebaseAuth;
+    private FirebaseUser mFirebaseUser;
+    private FirebaseDatabase mFirebaseDatabase;
+
     ActivityDashboardBinding mActivityDashboardBinding;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_dashboard);
         mActivityDashboardBinding   = DataBindingUtil.setContentView(this, R.layout.activity_dashboard);
-        //contentView = findViewById(R.id.contentViewMove);
-        //mToolbar        = findViewById(R.id.toolbar);
         setSupportActionBar(mActivityDashboardBinding.toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+        mFirebaseAuth           = FirebaseAuth.getInstance();
+        mFirebaseUser           = mFirebaseAuth.getCurrentUser();
+        mFirebaseDatabase       = FirebaseDatabase.getInstance();
+
         mBottomNavigationView   = mActivityDashboardBinding.bottomNavigationView;
         mFrameLayout            = mActivityDashboardBinding.dashboardFrameLayout;
+
+        checkIfUserProfileExist();
 
         mBottomNavigationView.setOnNavigationItemSelectedListener(this);
         mBottomNavigationView.setBackground(null);
@@ -101,8 +118,10 @@ public class DashboardActivity extends BaseApp implements NavigationView.OnNavig
         mDrawerLayout   = mActivityDashboardBinding.drawerLayout;
         mNavigationView = mActivityDashboardBinding.navView;
         mNavigationView.bringToFront();
-        mNavigationView.setNavigationItemSelectedListener(this);
+        //mNavigationView.setNavigationItemSelectedListener(this);
+        activityNavigations(mNavigationView);
         mNavigationView.setCheckedItem(R.id.nav_dashboard);
+
 
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(
                 this,
@@ -114,21 +133,20 @@ public class DashboardActivity extends BaseApp implements NavigationView.OnNavig
         mDrawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
 
-
-//        menuDrawerIconBurger    = findViewById(R.id.hambuger_menu);
-//        menuDrawerIconBurger.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if(mDrawerLayout.isDrawerVisible(GravityCompat.START)){
-//                    mDrawerLayout.closeDrawer(GravityCompat.START);
-//                }
-//                else{
-//                    mDrawerLayout.openDrawer(GravityCompat.START);
-//                }
-//            }
-//        });
-
         //animateNavigationDrawer();
+    }
+
+    private void activityNavigations(NavigationView navigationView){
+        navigationView.getMenu().findItem(R.id.logout).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                mFirebaseAuth.signOut();
+                SessionManager.getInstance(DashboardActivity.this).destroySession();
+                startActivity(new Intent(DashboardActivity.this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                finish();
+                return false;
+            }
+        });
     }
 
     private void animateNavigationDrawer() {
@@ -167,14 +185,27 @@ public class DashboardActivity extends BaseApp implements NavigationView.OnNavig
         }
     }
 
-    private void navigateDashboard(){
-        Intent intent   = new Intent(this, DashboardActivity.class);
-        startActivity(intent);
+    private void checkIfUserProfileExist(){
+        String uid  = mFirebaseUser.getUid();
+        mFirebaseDatabase.getReference().child("UserProfile").child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(!snapshot.exists()){
+                    startActivity(new Intent(DashboardActivity.this, SetupProfileActivity.class));
+                    finish();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        Fragment selectedFragment   = null;
+        Fragment selectedFragment   = new HomeFragment();
         switch(item.getItemId()){
             case R.id.home:
                 selectedFragment    = new HomeFragment();
@@ -183,10 +214,12 @@ public class DashboardActivity extends BaseApp implements NavigationView.OnNavig
                 selectedFragment    = new ShawamaFragment();
                 break;
             case R.id.drinks:
-                selectedFragment    = new DrinksFragment();
+                //selectedFragment    = new DrinksFragment();
+                activityRedirect(MenusActivity.class);
                 break;
             case R.id.shops:
-                selectedFragment    = new ShopsFragment();
+                //selectedFragment    = new ShopsFragment();
+                activityRedirect(ActiveMobileOutletsActivity.class);
                 break;
         }
         getSupportFragmentManager().beginTransaction().replace(R.id.dashboardFrameLayout, selectedFragment).commit();
@@ -220,5 +253,15 @@ public class DashboardActivity extends BaseApp implements NavigationView.OnNavig
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        checkIfUserProfileExist();
+    }
+
+    private void activityRedirect(Class c){
+        startActivity(new Intent(this, c));
     }
 }

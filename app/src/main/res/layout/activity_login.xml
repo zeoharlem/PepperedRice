@@ -2,7 +2,9 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
-
+        <variable
+            name="LoginViewModel"
+            type="com.zeoharlem.gads.pepperedrice.viewmodels.LoginViewModel" />
     </data>
 
     <RelativeLayout
@@ -36,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:background="@android:color/transparent"
-
+                android:text="@={LoginViewModel.username}"
                 android:drawablePadding="8dp"
                 android:fontFamily="@font/spartanblack"
                 android:gravity="center_vertical"
@@ -59,7 +61,7 @@
                 android:layout_marginTop="20dp"
                 android:background="@android:color/transparent"
                 android:drawablePadding="8dp"
-
+                android:text="@={LoginViewModel.password}"
                 android:fontFamily="@font/spartanblack"
                 android:gravity="center_vertical"
                 android:hint="Password"
@@ -105,18 +107,47 @@
                     android:textSize="14sp" />
             </LinearLayout>
 
-            <Button
-                android:id="@+id/loginButton"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/button_transparent_background"
-                android:fontFamily="@font/spartanblack"
-                android:padding="3dp"
-                android:text="Login Now"
-                android:textColor="@color/colorRed"
-                android:textSize="17sp"
-                android:textStyle="bold" />
+                android:layout_gravity="center_horizontal">
+
+                <ProgressBar
+                    android:layout_marginEnd="50dp"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/progressBar"
+                    android:layout_gravity="end"
+                    android:visibility="invisible"
+                    android:layout_alignTop="@+id/loginButton"
+                    android:layout_alignEnd="@+id/loginButton" />
+
+                <Button
+                    android:id="@+id/loginButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/button_transparent_background"
+                    android:fontFamily="@font/spartanblack"
+                    android:padding="3dp"
+                    android:text="Login Now"
+                    android:textColor="@color/colorRed"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+<!--                <Button-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Connect"-->
+<!--                    android:id="@+id/btnConnect"-->
+<!--                    android:layout_gravity="center_horizontal"-->
+<!--                    android:layout_marginTop="30dp"-->
+<!--                    android:width="200dp"-->
+<!--                     />-->
+            </RelativeLayout>
+
 
             <TextView
                 android:gravity="center_horizontal"

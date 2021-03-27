@@ -13,6 +13,7 @@
     <color name="colorPurple">#BA2CD3</color>
     <color name="colorRed">#EC3237</color>
     <color name="colorRed300">#e57373</color>
+    <color name="colorRed100">#ffcdd2</color>
     <color name="colorWhite">#FFF</color>
     <color name="colorWhiteSmoke">#F5F5F5</color>
     <color name="colorYellow">#ffd600</color>

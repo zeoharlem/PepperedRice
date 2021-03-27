@@ -41,6 +41,7 @@ public class FragmentC extends Fragment {
                 Intent intent   = new Intent(getContext(), LoginActivity.class);
                 getActivity().getSupportFragmentManager().popBackStack(null, POP_BACK_STACK_INCLUSIVE);
                 startActivity(intent);
+                getActivity().finish();
             }
         });
 
@@ -50,6 +51,7 @@ public class FragmentC extends Fragment {
                 Intent intent   = new Intent(getContext(), LoginActivity.class);
                 getActivity().getSupportFragmentManager().popBackStack(null, POP_BACK_STACK_INCLUSIVE);
                 startActivity(intent);
+                getActivity().finish();
             }
         });
         return view;

@@ -31,11 +31,11 @@
         <menu>
             <item
                 android:id="@+id/nav_facebook"
-                android:icon="@drawable/facebook"
+                android:icon="@drawable/facebook_white"
                 android:title="Facebook" />
             <item
                 android:id="@+id/nav_instagram"
-                android:icon="@drawable/instagram"
+                android:icon="@drawable/instagram_white"
                 android:title="Instagram" />
             <item
                 android:id="@+id/nav_youtube"
@@ -53,12 +53,12 @@
             <item
                 android:id="@+id/settings"
                 android:icon="@drawable/ic_baseline_settings_24"
-                android:title="Sign In" />
+                android:title="Settings" />
 
             <item
                 android:id="@+id/logout"
                 android:icon="@drawable/ic_baseline_power_settings_new_24"
-                android:title="Sign In" />
+                android:title="Log Out" />
         </menu>
 
     </item>

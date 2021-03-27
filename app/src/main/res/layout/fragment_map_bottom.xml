@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottom_sheet_automated"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bottom_sheet_background"
+    android:orientation="vertical"
+    android:padding="20dp"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+<!--    <com.mikhaellopez.circularimageview.CircularImageView-->
+<!--        android:id="@+id/imageCircularView"-->
+<!--        android:layout_width="80dp"-->
+<!--        android:layout_height="80dp"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:srcCompat="@drawable/logo" />-->
+
+    <LinearLayout
+        android:id="@+id/details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/fullname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/spartanblack"
+            android:text="John Connare"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <androidx.appcompat.widget.AppCompatRatingBar
+            android:id="@+id/ratings"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:isIndicator="true"
+            android:progressTint="@color/colorYellow"
+            android:rating="4" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/spartanregular"
+            android:id="@+id/locationAddress"
+            android:text="No 97, Channel Road, Isherin, Lagos"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/phoneNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/spartanregular"
+            android:text="234 8098 55 623"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:id="@+id/actionListButtons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/details">
+
+        <Button
+            android:id="@+id/whatsAppButton"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableEnd="@drawable/whatsapp"
+            android:drawablePadding="6dp"
+            android:fontFamily="@font/spartanregular"
+            android:paddingEnd="16dp"
+            android:text="Send Message"
+            android:textAllCaps="false"
+            android:textColor="#000" />
+
+        <Button
+            android:id="@+id/callButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+
+            android:drawableEnd="@drawable/ic_baseline_add_ic_call_24"
+            android:drawablePadding="6dp"
+            android:fontFamily="@font/spartanblack"
+            android:paddingEnd="16dp"
+            android:text="Mobile Outlet"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

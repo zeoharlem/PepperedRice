@@ -17,7 +17,7 @@ public class MyVolleySingleton {
     private static MyVolleySingleton mInstance;
     private RequestQueue mRequestQueue;
     private ImageLoader mImageLoader;
-    private static Context context;
+    private Context context;
 
     private MyVolleySingleton(Context context) {
         this.context = context;
@@ -51,7 +51,7 @@ public class MyVolleySingleton {
         if (mRequestQueue == null) {
             // getApplicationContext() is key, it keeps you from leaking the
             // WalletActivity or BroadcastReceiver if someone passes one in.
-            mRequestQueue = Volley.newRequestQueue(this.context.getApplicationContext());
+            mRequestQueue = Volley.newRequestQueue(context.getApplicationContext());
         }
         return mRequestQueue;
     }

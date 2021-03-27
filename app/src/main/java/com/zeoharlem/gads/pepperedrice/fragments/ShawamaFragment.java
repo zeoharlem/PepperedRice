@@ -12,6 +12,8 @@ import com.zeoharlem.gads.pepperedrice.R;
 
 public class ShawamaFragment extends Fragment {
 
+
+
     public ShawamaFragment() {
         // Required empty public constructor
     }

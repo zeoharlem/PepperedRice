@@ -150,19 +150,6 @@ public class CartListActivity extends BaseApp implements CartListAdapter.CartLis
                 checkOutBottomSheet.show(getSupportFragmentManager(), "checkOutFrag");
             }
         });
-
-//        mActivityCartListBinding.deliveryService.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-//                if(b){
-//                    //if it's checked
-//                    deliveryService = "Yes";
-//                }
-//                else{
-//                    deliveryService = "No";
-//                }
-//            }
-//        });
     }
 
     private void inits(){

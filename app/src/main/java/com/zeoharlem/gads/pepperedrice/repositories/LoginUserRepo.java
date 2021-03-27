@@ -9,6 +9,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.gson.Gson;
 import com.zeoharlem.gads.pepperedrice.models.LoginUser;
 
@@ -30,39 +31,27 @@ public class LoginUserRepo {
         return instance;
     }
 
-    public void userloginStart(String email, String password, LoginUser loginUser){
+    public void userLoginByUsingFirebase(String email, String password, iUserLoginCallbackListener callbackListener){
         mFirebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    isLoggedIn  = true;
-                    loginUser.setUserId(task.getResult().getUser().getUid());
-                    loginUser.setUsername(task.getResult().getUser().getEmail());
-                    loginUser.setLoggedIn(isLoggedIn);
+                    callbackListener.onSuccess(task.getResult());
                 }
                 else{
-                    Log.d("Repo", "false");
-                    isLoggedIn  = false;
-                    loginUser.setLoggedIn(isLoggedIn);
+                    callbackListener.onFailure(task.getException().getMessage());
                 }
             }
         });
-        Log.d("Outer", new Gson().toJson(loginUser));
     }
 
-    public MutableLiveData<LoginUser> getLoginUserMutableLiveData() {
-        return mLoginUserMutableLiveData;
+    public FirebaseAuth getFirebaseAuth() {
+        return mFirebaseAuth;
     }
 
-    public void setLoginUserMutableLiveData(MutableLiveData<LoginUser> loginUserMutableLiveData) {
-        mLoginUserMutableLiveData   = loginUserMutableLiveData;
+    public interface iUserLoginCallbackListener{
+        void onSuccess(AuthResult firebaseUser);
+        void onFailure(String message);
     }
 
-    public boolean isLoggedIn() {
-        return isLoggedIn;
-    }
-
-    public void setLoggedIn(boolean loggedIn) {
-        isLoggedIn = loggedIn;
-    }
 }
