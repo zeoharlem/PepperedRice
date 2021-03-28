@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.zeoharlem.gads.pepperedrice">
-
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -24,12 +23,14 @@
         android:theme="@style/Theme.PepperedRice"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
+        <activity android:name=".activities.PackagesActivity"></activity>
+        <activity android:name=".activities.VarietiesActivity" />
 
         <service
             android:name=".services.FirebaseNotificationService"
             android:exported="false">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
 
